@@ -38,11 +38,7 @@ export const TableHeaderRow: React.FC<ITableHeader> = ({
       <Table.Row>
         {monthNames.map((month: string, index: number) => {
           return (
-            <Table.HeaderCell
-              key={index}
-              monthname={month}
-              textAlign="center"
-            >
+            <Table.HeaderCell key={index} monthname={month} textAlign="center">
               {month}
             </Table.HeaderCell>
           );
