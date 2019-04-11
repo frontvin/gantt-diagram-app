@@ -16,7 +16,7 @@ export class GanttTable extends Component {
 
   render() {
     return (
-      <Table table="large" celled structured>
+      <Table table="large" columns="13" celled structured>
         <TableHeaderRow
           tasksHeaderName={"Tasks"}
           timelineHeaderName={"Timeline"}
