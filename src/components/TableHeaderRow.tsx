@@ -1,49 +1,53 @@
-import React from 'react';
-import { Table } from 'semantic-ui-react'
-import { string } from 'prop-types';
+import React from "react";
+import { Table } from "semantic-ui-react";
 
-export interface ITableHeader {
-    tasksHeaderName: string,
-    timelineHeaderName: string,
+interface ITableHeader {
+  tasksHeaderName: string;
+  timelineHeaderName: string;
 }
 
 export const TableHeaderRow: React.FC<ITableHeader> = ({
-    tasksHeaderName, 
-    timelineHeaderName,
-    } : ITableHeader) => {
+  tasksHeaderName,
+  timelineHeaderName
+}: ITableHeader) => {
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
 
-    const monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ];
-    
-    return (
+  return (
+    <Table.Header>
       <Table.Row>
-        <Table.HeaderCell>{tasksHeaderName}</Table.HeaderCell>
-        <Table.HeaderCell>
-          <Table.Row>{timelineHeaderName}</Table.Row>
-          <Table.Row>
-            {
-                monthNames.map((month: string, index: number) => {
-                    return (
-                        <Table.HeaderCell key={index} monthName={month}>
-                            {month}
-                        </Table.HeaderCell>
-                    );
-                })
-            }
-          </Table.Row>
+        <Table.HeaderCell rowSpan="2" textAlign="center">
+          {tasksHeaderName}
+        </Table.HeaderCell>
+        <Table.HeaderCell colSpan="12" textAlign="center">
+          {timelineHeaderName}
         </Table.HeaderCell>
       </Table.Row>
-    );
-}
+      <Table.Row>
+        {monthNames.map((month: string, index: number) => {
+          return (
+            <Table.HeaderCell
+              key={index}
+              monthname={month}
+              textAlign="center"
+            >
+              {month}
+            </Table.HeaderCell>
+          );
+        })}
+      </Table.Row>
+    </Table.Header>
+  );
+};
