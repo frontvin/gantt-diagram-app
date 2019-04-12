@@ -3,6 +3,7 @@ import { Table } from "semantic-ui-react";
 import { TableHeaderRow, monthNames } from "./TableHeaderRow";
 import { Task } from "./TaskRow";
 
+console.log(monthNames)
 
 
 export class GanttTable extends Component {
@@ -70,6 +71,17 @@ export class GanttTable extends Component {
         cellcolor: "red",
       }
     ];
+
+    const monthsWithTasks = tasks.reduce((acc: any, curr) => {
+      if (acc[monthNames[curr.taskStart]]) {
+        acc[monthNames[curr.taskStart]].push(curr);
+      } else {
+        acc[monthNames[curr.taskStart]]= [curr];
+      }
+      return acc;
+    }, {});
+
+    console.log(monthsWithTasks);
 
     return (
       <Table table="large" columns="13" celled structured>
