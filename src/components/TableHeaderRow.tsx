@@ -6,25 +6,25 @@ interface ITableHeader {
   timelineHeaderName: string;
 }
 
+export const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+];
+
 export const TableHeaderRow: React.FC<ITableHeader> = ({
   tasksHeaderName,
   timelineHeaderName
 }: ITableHeader) => {
-  const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-  ];
-
   return (
     <Table.Header>
       <Table.Row>

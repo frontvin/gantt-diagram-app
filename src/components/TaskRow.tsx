@@ -3,9 +3,8 @@ import { Table } from "semantic-ui-react";
 
 interface ITask {
   taskName: string;
-  timelineLength?: number;
+  taskDuration?: number;
   taskStartTime?: string;
-  taskFinishTime?: string;
 }
 
 export const Task: React.FC<ITask> = ({ taskName }) => {
