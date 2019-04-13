@@ -8,25 +8,46 @@ interface ITask {
   cellColor: string,
 }
 
+const monthNumbers = Array.from({ length: 12 }, (_,i)=>i+1);
 
+const taskActiveMonth = (
+  monthNumber: number,
+  taskStart: number,
+  taskDuration: number,
+) : boolean => {
+  return taskStart <= monthNumber && monthNumber < taskStart + taskDuration;
+}
 
-export const Task: React.FC<ITask> = ({ taskName }) => {
+const ColoredCell: React.FC<{backgroundColor: string}> = ({
+  children,
+  backgroundColor
+}) => {
   return (
-    <Table.Body >
+    <td style={{ backgroundColor }}>{children}</td>
+  )
+}
+
+export const Task: React.FC<ITask> = ({ 
+  taskName,
+  taskStart, 
+  taskDuration,
+  cellColor
+}) => {
+  return (
+    <Table.Body>
       <Table.Row>
         <Table.Cell>{taskName}</Table.Cell>
-        <Table.Cell />
-        <Table.Cell />
-        <Table.Cell />
-        <Table.Cell />
-        <Table.Cell />
-        <Table.Cell />
-        <Table.Cell />
-        <Table.Cell />
-        <Table.Cell />
-        <Table.Cell />
-        <Table.Cell />
-        <Table.Cell />
+        {monthNumbers.map(monthNumber => (
+          <Table.Cell 
+            key={monthNumber}
+            as={ColoredCell}
+            bgColor={
+              taskActiveMonth(monthNumber, taskStart, taskDuration)
+                ? cellColor
+                : ""
+            }
+          />
+        ))}
       </Table.Row>
     </Table.Body>
   );
