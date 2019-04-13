@@ -3,9 +3,12 @@ import { Table } from "semantic-ui-react";
 
 interface ITask {
   taskName: string;
-  taskDuration?: number;
-  taskStartTime?: string;
+  taskStart: number;
+  taskDuration: number;
+  cellColor: string,
 }
+
+
 
 export const Task: React.FC<ITask> = ({ taskName }) => {
   return (
