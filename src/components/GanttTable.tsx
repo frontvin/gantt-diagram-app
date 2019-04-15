@@ -1,87 +1,72 @@
 import React, { Component } from "react";
 import { Table } from "semantic-ui-react";
-import { TableHeaderRow, monthNames } from "./TableHeaderRow";
-import { Task } from "./TaskRow";
-
-console.log(monthNames)
-
+import { TableHeaderRow } from "./TableHeaderRow";
+import { TaskRow } from "./TaskRow";
 
 export class GanttTable extends Component {
-
-  render() {
+  render() {  
     const tasks = [
       {
         taskName: "Task 1",
         taskStart: 5,
-        taskDuration: 1,
-        cellcolor: "red"
+        taskDuration: 3,
+        cellColor: "red"
       },
       {
         taskName: "Task 2",
         taskStart: 1,
-        taskDuration: 1,
-        cellcolor: "blue"
+        taskDuration: 5,
+        cellColor: "blue"
       },
       {
         taskName: "Task 3",
         taskStart: 9,
-        taskDuration: 1,
-        cellcolor: "green"
+        taskDuration: 2,
+        cellColor: "green"
       },
       {
         taskName: "Task 4",
         taskStart: 3,
         taskDuration: 1,
-        cellcolor: "yellow"
+        cellColor: "yellow"
       },
       {
         taskName: "Task 5",
         taskStart: 1,
-        taskDuration: 1,
-        cellcolor: "purple"
+        taskDuration: 4,
+        cellColor: "purple"
       },
       {
         taskName: "Task 6",
         taskStart: 2,
-        taskDuration: 1,
-        cellcolor: "orange"
+        taskDuration: 5,
+        cellColor: "orange"
       },
       {
         taskName: "Task 7",
         taskStart: 4,
-        taskDuration: 1,
-        cellcolor: "grey"
+        taskDuration: 2,
+        cellColor: "grey"
       },
       {
         taskName: "Task 8",
         taskStart: 3,
-        taskDuration: 1,
-        cellcolor: "blue"
+        taskDuration: 5,
+        cellColor: "blue"
       },
       {
         taskName: "Task 9",
         taskStart: 5,
         taskDuration: 1,
-        cellcolor: "cian"
+        cellColor: "cyan"
       },
       {
         taskName: "Task 10",
         taskStart: 4,
-        taskDuration: 1,
-        cellcolor: "red",
+        taskDuration: 3,
+        cellColor: "red"
       }
     ];
-
-    const monthsWithTasks = tasks.reduce((acc: any, curr) => {
-      if (acc[monthNames[curr.taskStart]]) {
-        acc[monthNames[curr.taskStart]].push(curr);
-      } else {
-        acc[monthNames[curr.taskStart]]= [curr];
-      }
-      return acc;
-    }, {});
-
-    console.log(monthsWithTasks);
 
     return (
       <Table table="large" columns="13" celled structured>
@@ -90,7 +75,15 @@ export class GanttTable extends Component {
           timelineHeaderName={"Timeline"}
         />
         {tasks.map((task, index) => {
-          return <Task taskName={task.taskName} key={index} />;
+          return (
+            <TaskRow
+              key={index}
+              taskName={task.taskName}
+              taskStart={task.taskStart}
+              taskDuration={task.taskDuration}
+              cellColor={task.cellColor}
+            />
+          );
         })}
       </Table>
     );

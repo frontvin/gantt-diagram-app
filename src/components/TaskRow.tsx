@@ -5,31 +5,29 @@ interface ITask {
   taskName: string;
   taskStart: number;
   taskDuration: number;
-  cellColor: string,
+  cellColor: string;
 }
 
-const monthNumbers = Array.from({ length: 12 }, (_,i)=>i+1);
+const monthNumbers = Array.from({ length: 12 }, (_, i) => i + 1);
 
-const taskActiveMonth = (
+const taskActiveInMonth = (
   monthNumber: number,
   taskStart: number,
-  taskDuration: number,
-) : boolean => {
+  taskDuration: number
+): boolean => {
   return taskStart <= monthNumber && monthNumber < taskStart + taskDuration;
-}
+};
 
-const ColoredCell: React.FC<{backgroundColor: string}> = ({
+const ColoredCell: React.FC<{ backgroundColor: string }> = ({
   children,
   backgroundColor
 }) => {
-  return (
-    <td style={{ backgroundColor }}>{children}</td>
-  )
-}
+  return <td style={{ backgroundColor }}>{children}</td>;
+};
 
-export const Task: React.FC<ITask> = ({ 
+export const TaskRow: React.FC<ITask> = ({
   taskName,
-  taskStart, 
+  taskStart,
   taskDuration,
   cellColor
 }) => {
@@ -38,11 +36,11 @@ export const Task: React.FC<ITask> = ({
       <Table.Row>
         <Table.Cell>{taskName}</Table.Cell>
         {monthNumbers.map(monthNumber => (
-          <Table.Cell 
+          <Table.Cell
             key={monthNumber}
             as={ColoredCell}
-            bgColor={
-              taskActiveMonth(monthNumber, taskStart, taskDuration)
+            backgroundColor={
+              taskActiveInMonth(monthNumber, taskStart, taskDuration)
                 ? cellColor
                 : ""
             }
