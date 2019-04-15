@@ -8,7 +8,7 @@ interface ITask {
   cellColor: string;
 }
 
-const monthNumbers = Array.from({ length: 12 }, (_, i) => i + 1);
+const monthNumbers = Array.from({ length: 12 }, (j, i) => i + 1);
 
 const taskActiveInMonth = (
   monthNumber: number,
