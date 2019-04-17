@@ -71,10 +71,10 @@ export class GanttTable extends Component {
     return (
       <Table table="large" columns="13" celled structured>
         <TableHeaderRow
-          tasksHeaderName={"Tasks"}
-          timelineHeaderName={"Timeline"}
+          tasksHeaderName={ "Tasks" }
+          timelineHeaderName={ "Timeline" }
         />
-        {tasks.map((task, index) => {
+        { tasks.map((task, index) => {
           return (
             <TaskRow
               key={index}
