@@ -34,8 +34,8 @@ export const TaskRow: React.FC<ITask> = ({
   return (
     <Table.Body>
       <Table.Row>
-        <Table.Cell>{taskName}</Table.Cell>
-        {monthNumbers.map(monthNumber => (
+        <Table.Cell>{ taskName }</Table.Cell>
+        { monthNumbers.map(monthNumber => (
           <Table.Cell
             key={monthNumber}
             as={ColoredCell}
