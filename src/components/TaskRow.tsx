@@ -1,5 +1,6 @@
 import React from "react";
 import { Table } from "semantic-ui-react";
+import { ColoredCell } from "./ColoredCell";
 
 interface ITask {
   taskName: string;
@@ -18,11 +19,8 @@ const taskActiveInMonth = (
   return taskStart <= monthNumber && monthNumber < taskStart + taskDuration;
 };
 
-const ColoredCell: React.FC<{ backgroundColor: string }> = ({
-  children,
-  backgroundColor
-}) => {
-  return <td style={{ backgroundColor }}>{children}</td>;
+export const getCurrentCell = (monthNumbers: number): void => {
+  console.log(monthNumbers);
 };
 
 export const TaskRow: React.FC<ITask> = ({
@@ -34,8 +32,8 @@ export const TaskRow: React.FC<ITask> = ({
   return (
     <Table.Body>
       <Table.Row>
-        <Table.Cell>{ taskName }</Table.Cell>
-        { monthNumbers.map(monthNumber => (
+        <Table.Cell>{taskName}</Table.Cell>
+        {monthNumbers.map(monthNumber => (
           <Table.Cell
             key={monthNumber}
             as={ColoredCell}
@@ -44,6 +42,7 @@ export const TaskRow: React.FC<ITask> = ({
                 ? cellColor
                 : ""
             }
+            onClick={getCurrentCell}
           />
         ))}
       </Table.Row>
