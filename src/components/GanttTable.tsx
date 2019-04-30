@@ -82,7 +82,6 @@ export class GanttTable extends Component {
               taskStart={task.taskStart}
               taskDuration={task.taskDuration}
               cellColor={task.cellColor}
-              // getCurrentCell={getCurrentCell}
             />
           );
         })}

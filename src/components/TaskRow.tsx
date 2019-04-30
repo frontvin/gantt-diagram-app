@@ -19,11 +19,11 @@ const taskActiveInMonth = (
   return taskStart <= monthNumber && monthNumber < taskStart + taskDuration;
 };
 
-export const getCurrentCell = (monthNumbers: number[]): void => {
+export function getCurrentCell(): void {
   console.log(monthNumbers);
-  };
+};
 
-getCurrentCell(monthNumbers)
+getCurrentCell()
 
 export const TaskRow: React.FC<ITask> = ({
   taskName,
