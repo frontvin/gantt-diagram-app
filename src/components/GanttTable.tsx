@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { Table } from "semantic-ui-react";
 import { TableHeaderRow } from "./TableHeaderRow";
-import { TaskRow, getCurrentCell } from "./TaskRow";
+import { TaskRow } from "./TaskRow";
 
 export class GanttTable extends Component {
-  render() {
-    const tasks = [
+constructor(props){
+  super(props);
+  this.state = {
+    tasks : [
       {
         taskName: "Task 1",
         taskStart: 5,
@@ -66,7 +68,11 @@ export class GanttTable extends Component {
         taskDuration: 3,
         cellColor: "red"
       }
-    ];
+    ]
+  }
+}
+
+  render() {
 
     return (
       <Table table="large" columns="13" celled structured>
@@ -74,7 +80,7 @@ export class GanttTable extends Component {
           tasksHeaderName={"Tasks"}
           timelineHeaderName={"Timeline"}
         />
-        {tasks.map((task, index) => {
+        {this.state.tasks.map((task, index) => {
           return (
             <TaskRow
               key={index}
