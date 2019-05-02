@@ -3,7 +3,7 @@ import { Table } from "semantic-ui-react";
 import { TableHeaderRow } from "./TableHeaderRow";
 import { TaskRow } from "./TaskRow";
 
-export class GanttTable extends Component {
+export class GanttTable extends Component<{},{}> {
 constructor(props : any){
   super(props);
   this.state = {
@@ -81,7 +81,7 @@ constructor(props : any){
           tasksHeaderName={"Tasks"}
           timelineHeaderName={"Timeline"}
         />
-        {tasks.map((task: any , index : any) => {
+        {tasks.map((task: any, index : any) => {
           return (
             <TaskRow
               key={index}
