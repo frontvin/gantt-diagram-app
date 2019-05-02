@@ -3,8 +3,8 @@ import { Table } from "semantic-ui-react";
 import { TableHeaderRow } from "./TableHeaderRow";
 import { TaskRow } from "./TaskRow";
 
-export class GanttTable extends Component<{},{}> {
-constructor(props: Readonly<{}>){
+export class GanttTable extends Component {
+constructor(props : any){
   super(props);
   this.state = {
     tasks: [

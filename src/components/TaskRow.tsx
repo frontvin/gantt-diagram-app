@@ -2,7 +2,7 @@ import React from "react";
 import { Table } from "semantic-ui-react";
 import { ColoredCell } from "./ColoredCell";
 
-interface ITask {
+export interface ITask {
   taskName: string;
   taskStart: number;
   taskDuration: number;
