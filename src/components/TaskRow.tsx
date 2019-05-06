@@ -1,6 +1,7 @@
 import React from "react";
 import { Table } from "semantic-ui-react";
-import { ColoredCell } from "./ColoredCell";
+
+import { TaskCell } from "./TaskCell";
 
 export interface ITask {
   taskName: string;
@@ -19,30 +20,23 @@ const taskActiveInMonth = (
   return taskStart <= monthNumber && monthNumber < taskStart + taskDuration;
 };
 
-export function getCurrentCell(): void {
+export function getCurrentCell(monthNumber: number, taskName: string): void {
+  console.log(monthNumber, taskName);
+}
 
-};
-
-export const TaskRow: React.FC<ITask> = ({
-  taskName,
-  taskStart,
-  taskDuration,
-  cellColor
-}) => {
+export const TaskRow: React.FC<ITask> = ({ taskName, taskStart, taskDuration, cellColor }) => {
   return (
     <Table.Body>
       <Table.Row>
         <Table.Cell>{taskName}</Table.Cell>
         {monthNumbers.map(monthNumber => (
-          <Table.Cell
-            key={monthNumber}
-            as={ColoredCell}
-            backgroundColor={
-              taskActiveInMonth(monthNumber, taskStart, taskDuration)
-                ? cellColor
-                : ""
-            }
-            onClick={getCurrentCell}
+          <TaskCell
+            key={`${monthNumber}-${taskName}`}
+            monthNumber={monthNumber}
+            taskName={taskName}
+            cellColor={cellColor}
+            active={taskActiveInMonth(monthNumber, taskStart, taskDuration)}
+            getCurrentCell={getCurrentCell}
           />
         ))}
       </Table.Row>

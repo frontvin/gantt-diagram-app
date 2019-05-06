@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Table } from "semantic-ui-react";
 import { TableHeaderRow } from "./TableHeaderRow";
-import { TaskRow } from "./TaskRow";
+import { ITask, TaskRow } from "./TaskRow";
 
-export class GanttTable extends Component<{},{}> {
-constructor(props : any){
+export class GanttTable extends Component<{}, { tasks: ITask[] }> {
+constructor(props: any){
   super(props);
   this.state = {
     tasks: [
@@ -73,7 +73,7 @@ constructor(props : any){
 }
 
   render() {
-    const { tasks } = this.state.tasks;
+    const { tasks } = this.state;
 
     return (
       <Table table="large" columns="13" celled structured>
