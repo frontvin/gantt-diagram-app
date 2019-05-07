@@ -4,7 +4,7 @@ import { TableHeaderRow } from "./TableHeaderRow";
 import { ITask, TaskRow } from "./TaskRow";
 
 export class GanttTable extends Component<{}, { tasks: ITask[] }> {
-constructor(props: any){
+constructor(props: any) {
   super(props);
   this.state = {
     tasks: [
