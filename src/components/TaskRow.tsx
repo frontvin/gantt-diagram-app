@@ -8,6 +8,7 @@ export interface ITask {
   taskStart: number;
   taskDuration: number;
   cellColor: string;
+  setDuration?: () => number
 }
 
 const monthNumbers = Array.from({ length: 12 }, (j, i) => i + 1);

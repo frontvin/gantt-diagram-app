@@ -91,7 +91,7 @@ constructor(props: any) {
               taskStart={task.taskStart}
               taskDuration={task.taskDuration}
               cellColor={task.cellColor}
-              onClick={(taskDuration : number) => this.setState(({ tasks }) => {
+              setDuration={(taskDuration : number) => this.setState(({ tasks }) => {
                 const updated = tasks.slice();
                 updated[index] = {...updated[index], taskDuration };
                 return { tasks: updated };
@@ -99,7 +99,7 @@ constructor(props: any) {
             />
           );
         })}
-        this.props.onClick(newTaskDuration)
+        this.props.setDuration(newTaskDuration)
       </Table>
     );
   }
