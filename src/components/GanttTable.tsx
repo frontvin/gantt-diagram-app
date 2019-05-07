@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Table } from "semantic-ui-react";
 import { TableHeaderRow } from "./TableHeaderRow";
-import { ITask, TaskRow } from "./TaskRow";
+import { getCurrentCell, ITask, TaskRow } from "./TaskRow";
 
 export class GanttTable extends Component<{}, { tasks: ITask[] }> {
+
 constructor(props: any) {
   super(props);
   this.state = {
@@ -72,6 +73,7 @@ constructor(props: any) {
   }
 }
 
+
   render() {
     const { tasks } = this.state;
 
@@ -89,9 +91,15 @@ constructor(props: any) {
               taskStart={task.taskStart}
               taskDuration={task.taskDuration}
               cellColor={task.cellColor}
+              onClick={(taskDuration : number) => this.setState(({ tasks }) => {
+                const updated = tasks.slice();
+                updated[index] = {...updated[index], taskDuration };
+                return { tasks: updated };
+              })}
             />
           );
         })}
+        this.props.onClick(newTaskDuration)
       </Table>
     );
   }

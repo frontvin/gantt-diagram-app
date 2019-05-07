@@ -20,9 +20,9 @@ const taskActiveInMonth = (
   return taskStart <= monthNumber && monthNumber < taskStart + taskDuration;
 };
 
-export function getCurrentCell(monthNumber: number, taskName: string, taskStart: number): void {
-  const newTaskDuration : number = monthNumber - taskStart;
-  console.log(monthNumber, taskName, newTaskDuration);
+export function getCurrentCell(monthNumber: number, taskStart: number): number {
+  return monthNumber - taskStart;
+  // console.log(monthNumber, taskName, newTaskDuration);
 
 }
 

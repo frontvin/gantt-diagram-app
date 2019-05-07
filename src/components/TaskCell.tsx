@@ -8,11 +8,10 @@ export interface ITaskCell {
   taskStart: number;
   active: boolean;
   cellColor: string;
-  getCurrentCell(monthNumber: number, taskName: string, taskStart: number): void;
+  getCurrentCell(monthNumber: number, taskStart: number): void;
 }
 
 export const TaskCell: React.FC<ITaskCell> = ({
-     taskName,
      monthNumber,
      taskStart,
      active,
@@ -24,7 +23,7 @@ export const TaskCell: React.FC<ITaskCell> = ({
       key={monthNumber}
       as={ColoredCell}
       backgroundColor={active ? cellColor : ""}
-      onClick={() => getCurrentCell(monthNumber, taskName, taskStart)}
+      onClick={() => getCurrentCell(monthNumber, taskStart)}
     />
   );
 };
