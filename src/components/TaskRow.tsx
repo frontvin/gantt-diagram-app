@@ -20,24 +20,25 @@ const taskActiveInMonth = (
   return taskStart <= monthNumber && monthNumber < taskStart + taskDuration;
 };
 
-export const getCurrentCell = (monthNumber: number, taskName : string, taskStart: number): number =>{
-  return taskStart - monthNumber
-  // console.log(monthNumber, taskName, newTaskDuration);
-}
+export const getCurrentCell = (monthNumber: number, taskName : string, taskStart: number): void =>{
+  let newTaskDuration;
+  newTaskDuration = taskStart - monthNumber;
+  console.log(monthNumber, taskName, newTaskDuration);
+};
 
-export const TaskRow: React.FC<ITask> = ({ taskName, taskStart, taskDuration, cellColor }) => {
+export const TaskRow: React.FC<ITask> = (props) => {
   return (
     <Table.Body>
       <Table.Row>
-        <Table.Cell>{taskName}</Table.Cell>
+        <Table.Cell>{props.taskName}</Table.Cell>
         {monthNumbers.map(monthNumber => (
           <TaskCell
-            key={`${monthNumber}-${taskName}`}
+            key={`${monthNumber}-${props.taskName}`}
             monthNumber={monthNumber}
-            taskName={taskName}
-            taskStart={taskStart}
-            cellColor={cellColor}
-            active={taskActiveInMonth(monthNumber, taskStart, taskDuration)}
+            taskName={props.taskName}
+            taskStart={props.taskStart}
+            cellColor={props.cellColor}
+            active={taskActiveInMonth(monthNumber, props.taskStart, props.taskDuration)}
             getCurrentCell={getCurrentCell}
           />
         ))}

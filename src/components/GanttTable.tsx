@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Table } from "semantic-ui-react";
 import { TableHeaderRow } from "./TableHeaderRow";
-import { ITask, TaskRow, getCurrentCell } from "./TaskRow";
+import { ITask, TaskRow } from "./TaskRow";
 
 export class GanttTable extends Component<{}, { tasks: ITask[] }> {
 
@@ -72,10 +72,6 @@ constructor(props: any) {
     ]
   }
 }
-
-  private updateTaskDuration = () => {
-
-  }
 
   render() {
     const { tasks } = this.state;
