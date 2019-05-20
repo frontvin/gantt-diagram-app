@@ -1,5 +1,7 @@
-import React from "react";
+import React from 'react';
 
+// ****************************************************************
+// cell styled component
 export const ColoredCell: React.FC<{
   backgroundColor: string;
   onClick: () => void;

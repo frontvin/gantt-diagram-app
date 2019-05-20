@@ -1,12 +1,10 @@
-import React from "react";
+import React from 'react';
 import { Table } from "semantic-ui-react";
 
-interface ITableHeader {
-  tasksHeaderName: string;
-  timelineHeaderName: string;
-}
+//********************************************************************** */
+// Table header row component
 
-export const monthNames = [
+const monthNames = [
   "January",
   "February",
   "March",
@@ -21,29 +19,16 @@ export const monthNames = [
   "December"
 ];
 
-export const TableHeaderRow: React.FC<ITableHeader> = ({
-  tasksHeaderName,
-  timelineHeaderName
-}: ITableHeader) => {
+export const TableHeaderRow: React.FC = () => {
   return (
-    <Table.Header>
-      <Table.Row>
-        <Table.HeaderCell rowSpan="2" textAlign="center">
-          {tasksHeaderName}
-        </Table.HeaderCell>
-        <Table.HeaderCell colSpan="12" textAlign="center">
-          {timelineHeaderName}
-        </Table.HeaderCell>
-      </Table.Row>
-      <Table.Row>
-        {monthNames.map((month: string, index: number) => {
-          return (
-            <Table.HeaderCell key={index} monthname={month} textAlign="center">
-              {month}
-            </Table.HeaderCell>
-          );
-        })}
-      </Table.Row>
-    </Table.Header>
+    <React.Fragment>
+      {monthNames.map((month: string, index: number) => {
+        return (
+          <Table.HeaderCell key={index} monthname={month} textAlign="center">
+            {month}
+          </Table.HeaderCell>
+        );
+      })}
+    </React.Fragment>
   );
 };
