@@ -6,17 +6,19 @@ import { ColoredCell } from './ColoredCell'
 // One task cell component
 // cell interface
 interface ITaskCell {
+  taskID: number
   taskName: string;
   monthNumber: number;
   taskStart: number;
   active: boolean;
   cellColor: string;
   getCurrentCell(
+    taskID: number,
     monthNumber: number,
-  ): number;
+  ): void;
 }
 
-export const TaskCell: React.FC<ITaskCell> = ({
+export const TaskCell: React.FC<ITaskCell> = ({ taskID,
                                                 monthNumber,
                                                 active,
                                                 cellColor,
@@ -27,7 +29,7 @@ export const TaskCell: React.FC<ITaskCell> = ({
       key={monthNumber}
       as={ColoredCell}
       backgroundColor={active ? cellColor : ""}
-      onClick={() => getCurrentCell(monthNumber)}
+      onClick={() => getCurrentCell(taskID, monthNumber)}
     />
   );
 };

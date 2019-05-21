@@ -98,32 +98,34 @@ const App = () => {
 
   type TaskId = number;
 
-  // define task schema
-  // const task = new schema.Entity("tasks");
-  // const mySchema = { tasks: [task] };
+// define task schema
+// const task = new schema.Entity("tasks");
+// const mySchema = { tasks: [task] };
 
-  // // Normalized array
-  // const normTasks: INormalizedTasksResponse = normalize(data, mySchema);
+// // Normalized array
+// const normTasks: INormalizedTasksResponse = normalize(data, mySchema);
 
-  // console.log(normTasks);
+// console.log(normTasks);
 
-  // Setting state
+// Setting state
   const [tasks, setTasks] = useState(data);
   console.log(tasks);
 
-  // App component
+// App component
   const changeTaskDuration = (
     taskID: number,
+    taskStart: number,
     taskDuration: number
   ): void => {
     const task = tasks.tasksById[taskID];
+    // const { ... } = task
     // setTasks(task)
     // return newTask
     // setTasks(newTask);
     console.log(task);
   };
 
-  changeTaskDuration(5, 4);
+  changeTaskDuration(5, 4, 2);
 
   return (
     <Table table="large" columns="13" celled structured selectable>
@@ -143,6 +145,7 @@ const App = () => {
           return (
             <Task
               key={taskID}
+              taskID={task.id}
               taskName={task.taskName}
               taskStart={task.taskStart}
               taskDuration={task.taskDuration}

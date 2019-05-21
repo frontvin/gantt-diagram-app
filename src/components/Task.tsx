@@ -6,6 +6,7 @@ import { TaskCell } from './TaskCell'
 // Task component
 // task interface
 interface ITask {
+  taskID: number
   taskName: string;
   taskStart: number;
   taskDuration: number;
@@ -23,10 +24,11 @@ const taskActiveInMonth = (
 };
 
 export const getCurrentCell = (
+  taskID: number,
   monthNumber: number,
-): number => {
-  return monthNumber;
-  // console.log(monthNumber);
+): void => {
+  // return monthNumber;
+  console.log(monthNumber, taskID);
 };
 
 export const Task: React.FC<ITask> = (props) => {
@@ -36,6 +38,7 @@ export const Task: React.FC<ITask> = (props) => {
       {monthNumbers.map(monthNumber => (
         <TaskCell
           key={`${monthNumber}-${props.taskName}`}
+          taskID={props.taskID}
           monthNumber={monthNumber}
           taskName={props.taskName}
           taskStart={props.taskStart}
