@@ -11,6 +11,7 @@ interface ITask {
   taskStart: number;
   taskDuration: number;
   cellColor: string;
+  changeTaskDuration: () => void
 }
 
 const monthNumbers = Array.from({ length: 12 }, (j, i) => i + 1);
@@ -23,12 +24,14 @@ const taskActiveInMonth = (
   return taskStart <= monthNumber && monthNumber < taskStart + taskDuration;
 };
 
-export const getCurrentCell = (
+const getCurrentCell = (
   taskID: number,
   monthNumber: number,
 ): void => {
   // return monthNumber;
+
   console.log(monthNumber, taskID);
+
 };
 
 export const Task: React.FC<ITask> = (props) => {

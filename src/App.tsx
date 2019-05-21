@@ -100,21 +100,20 @@ const App = () => {
 
   // Setting state
   const [tasks, setTasks] = useState(data);
-  console.log(tasks);
 
   // App component
   const changeTaskDuration = (
     taskID: number,
     taskStart: number,
     taskDuration: number
-  ): void => {
+  ) : void  => {
     const task = tasks.tasksById[taskID];
     const newTasks = { ...tasks };
     newTasks.tasksById[taskID] = {
       ...task,
       ...{ taskStart: taskStart, taskDuration: taskDuration }
     };
-    setTasks(newTasks);
+    setTasks(newTasks)
   };
 
   return (
@@ -140,6 +139,7 @@ const App = () => {
               taskStart={task.taskStart}
               taskDuration={task.taskDuration}
               cellColor={task.cellColor}
+              changeTaskDuration={()=>changeTaskDuration}
             />
           );
         })}
