@@ -114,6 +114,7 @@ const App = () => {
       ...{ taskStart: taskStart, taskDuration: taskDuration }
     };
     setTasks(newTasks)
+    console.log(setTasks(newTasks))
   };
 
   return (
@@ -139,7 +140,7 @@ const App = () => {
               taskStart={task.taskStart}
               taskDuration={task.taskDuration}
               cellColor={task.cellColor}
-              changeTaskDuration={()=>changeTaskDuration}
+              changeTaskDuration={changeTaskDuration}
             />
           );
         })}
