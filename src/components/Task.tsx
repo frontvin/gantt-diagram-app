@@ -24,22 +24,24 @@ const taskActiveInMonth = (
   return taskStart <= monthNumber && monthNumber < taskStart + taskDuration;
 };
 
-
-
 export const Task: React.FC<ITask> = (props) => {
 
   const getCurrentCell = (
     taskID: number,
     monthNumber: number,
   ): void => {
-    // return monthNumber;
+    let taskStart = props.taskStart;
+    let newDuration = monthNumber - taskStart +1;
 
-    const taskStart = props.taskStart;
-    const newDuration = monthNumber - taskStart +1;
+    if (monthNumber < taskStart) {
+      let newTaskStart = monthNumber;
+      newDuration = taskStart - newTaskStart;
+      taskStart= newTaskStart;
+    }
+
     props.changeTaskDuration(taskID, taskStart, newDuration);
 
-    console.log(monthNumber, taskID);
-
+    console.log(`monthNumber ${monthNumber}, taskID ${taskID}`);
   };
 
   return (

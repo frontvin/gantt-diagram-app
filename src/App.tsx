@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { normalize, schema } from "normalizr";
 import { Table } from "semantic-ui-react";
 import "./App.css";
 import { TableHeaderRow } from "./components/TableHeaderRow";
@@ -113,8 +112,7 @@ const App = () => {
       ...task,
       ...{ taskStart: taskStart, taskDuration: taskDuration }
     };
-    setTasks(newTasks)
-    console.log(setTasks(newTasks))
+    setTasks(newTasks);
   };
 
   return (
