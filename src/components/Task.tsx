@@ -30,16 +30,25 @@ export const Task: React.FC<ITask> = (props) => {
     taskID: number,
     monthNumber: number,
   ): void => {
-    let taskStart = props.taskStart;
-    let newDuration = monthNumber - taskStart +1;
 
-    if (monthNumber < taskStart) {
+    let initialTaskStart = props.taskStart;
+
+    if (monthNumber > initialTaskStart) {
+      let newDuration = monthNumber - props.taskStart + 1;
+      props.changeTaskDuration(taskID, props.taskStart, newDuration);
+    }
+    else if (monthNumber < initialTaskStart) {
+      // let newTaskStart = monthNumber;
       let newTaskStart = monthNumber;
-      newDuration = taskStart - newTaskStart;
-      taskStart= newTaskStart;
+      let taskEnd = props.taskStart + props.taskDuration;
+      let newDuration = taskEnd - newTaskStart + 1;
+      props.changeTaskDuration(taskID, newTaskStart, newDuration);
+    }
+    else {
+      props.changeTaskDuration(taskID, 0, 0);
     }
 
-    props.changeTaskDuration(taskID, taskStart, newDuration);
+
 
     console.log(`monthNumber ${monthNumber}, taskID ${taskID}`);
   };
