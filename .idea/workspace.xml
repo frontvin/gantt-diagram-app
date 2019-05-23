@@ -4,7 +4,6 @@
     <list default="true" id="020e0c0a-ed66-4cc4-aaa2-b9a07360a246" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Task.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Task.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TaskCell.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TaskCell.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,8 +22,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="21" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="21" />
+            <state relative-caret-position="150">
+              <caret line="14" column="21" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="21" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -35,8 +34,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/Task.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="43" column="49" selection-start-line="43" selection-start-column="49" selection-end-line="43" selection-end-column="49" />
+            <state relative-caret-position="195">
+              <caret line="39" column="46" lean-forward="true" selection-start-line="39" selection-start-column="46" selection-end-line="39" selection-end-column="46" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -78,7 +77,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -101,6 +99,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -158,12 +157,13 @@
       <workItem from="1558379413873" duration="12842000" />
       <workItem from="1558456671517" duration="12758000" />
       <workItem from="1558504278468" duration="309000" />
-      <workItem from="1558504703288" duration="8737000" />
+      <workItem from="1558504703288" duration="9771000" />
+      <workItem from="1558614210429" duration="452000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="116991000" />
+    <option name="totallyTimeSpent" value="118477000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -178,7 +178,7 @@
     <frame x="0" y="25" width="1366" height="743" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49635038" visible="true" weight="0.24944155" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49635038" visible="true" weight="0.24944155" />
       <window_info id="Structure" order="1" sideWeight="0.50364965" side_tool="true" weight="0.24944155" />
       <window_info id="npm" order="2" sideWeight="0.50364965" side_tool="true" weight="0.24944155" />
       <window_info id="Favorites" order="3" sideWeight="0.50364965" side_tool="true" weight="0.24944155" />
@@ -192,8 +192,8 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32899022" />
       <window_info anchor="bottom" id="TypeScript" order="9" sideWeight="0.4988831" weight="0.24918567" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50111693" side_tool="true" weight="0.15798046" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4996277" weight="0.22638437" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50111693" side_tool="true" weight="0.22638437" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4988831" weight="0.22638437" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -336,8 +336,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="21" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="21" />
+        <state relative-caret-position="150">
+          <caret line="14" column="21" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="21" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
@@ -346,8 +346,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Task.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="43" column="49" selection-start-line="43" selection-start-column="49" selection-end-line="43" selection-end-column="49" />
+        <state relative-caret-position="195">
+          <caret line="39" column="46" lean-forward="true" selection-start-line="39" selection-start-column="46" selection-end-line="39" selection-end-column="46" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
