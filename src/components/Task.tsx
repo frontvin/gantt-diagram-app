@@ -45,6 +45,7 @@ export const Task: React.FC<ITask> = (props) => {
     }
 
     console.log(`monthNumber ${monthNumber}, taskID ${taskID}`);
+
   };
 
   return (

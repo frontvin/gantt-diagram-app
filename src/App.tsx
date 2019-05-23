@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Table } from "semantic-ui-react";
 import "./App.css";
 import { TableHeaderRow } from "./components/TableHeaderRow";
@@ -100,7 +101,11 @@ const App = () => {
   // Setting state
   const [tasks, setTasks] = useState(data);
 
-  // App component
+  const postData = (data: ITasksState) => {
+    return axios.post(`http://localhost:3000/tasksById`, data)
+      .then((response) => console.log(response))
+  };
+
   const changeTaskDuration = (
     taskID: number,
     taskStart: number,
@@ -113,7 +118,15 @@ const App = () => {
       ...{ taskStart: taskStart, taskDuration: taskDuration }
     };
     setTasks(newTasks);
+
+    postData(tasks)
   };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/tasksById")
+      .then(result => setTasks(result.data.tasks));
+  });
 
   return (
     <Table table="large" columns="13" celled structured selectable>
