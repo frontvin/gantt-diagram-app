@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"
+// import { normalize, schema } from "normalizr"
 import axios from "axios";
 import { Table } from "semantic-ui-react";
 import "./App.css";
@@ -18,7 +19,7 @@ const App = () => {
   }
 
   interface IOneTask {
-    id: TaskId;
+    id: number;
     taskName: string;
     taskStart: number;
     taskDuration: number;
@@ -27,7 +28,26 @@ const App = () => {
 
   type TaskId = number;
 
+  // interface INormalizedData<T> {
+  //   [uuid: string]: T
+  // }
+  //
+  // interface INormalizedTasksResponse {
+  //   result: number[],
+  //   entities: INormalizedData<IOneTask>
+  // }
+
   // Setting state
+
+  // define task schema
+  // const task = new schema.Entity("tasks");
+  // const mySchema = { tasks: [task] };
+  //
+  // // Normalized array
+  // const normTasks: INormalizedTasksResponse = normalize(data, mySchema);
+  //
+  // console.log(normTasks);
+
   const [tasks, setTasks] = useState(data);
 
   const postData = (data: ITasksState) => {
@@ -53,9 +73,9 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/tasksById")
+      .get<ITasksState>("http://localhost:3000/tasksById")
       .then(result => setTasks(result.data));
-  }, [data]);
+  }, []);
 
   return (
     <Table table="large" columns="13" celled structured selectable>
