@@ -8,79 +8,8 @@ import { Task } from "./components/Task";
 const App = () => {
   //Data
   const data: ITasksState = {
-    ids: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    tasksById: {
-      1: {
-        id: 1,
-        taskName: "Task 1",
-        taskStart: 5,
-        taskDuration: 3,
-        cellColor: "red"
-      },
-      2: {
-        id: 2,
-        taskName: "Task 2",
-        taskStart: 1,
-        taskDuration: 5,
-        cellColor: "blue"
-      },
-      3: {
-        id: 3,
-        taskName: "Task 3",
-        taskStart: 9,
-        taskDuration: 2,
-        cellColor: "green"
-      },
-      4: {
-        id: 4,
-        taskName: "Task 4",
-        taskStart: 3,
-        taskDuration: 1,
-        cellColor: "yellow"
-      },
-      5: {
-        id: 5,
-        taskName: "Task 5",
-        taskStart: 1,
-        taskDuration: 4,
-        cellColor: "purple"
-      },
-      6: {
-        id: 6,
-        taskName: "Task 6",
-        taskStart: 2,
-        taskDuration: 5,
-        cellColor: "orange"
-      },
-      7: {
-        id: 7,
-        taskName: "Task 7",
-        taskStart: 4,
-        taskDuration: 2,
-        cellColor: "grey"
-      },
-      8: {
-        id: 8,
-        taskName: "Task 8",
-        taskStart: 3,
-        taskDuration: 5,
-        cellColor: "blue"
-      },
-      9: {
-        id: 9,
-        taskName: "Task 9",
-        taskStart: 5,
-        taskDuration: 1,
-        cellColor: "cyan"
-      },
-      10: {
-        id: 10,
-        taskName: "Task 10",
-        taskStart: 4,
-        taskDuration: 3,
-        cellColor: "red"
-      }
-    }
+    ids: [],
+    tasksById: {}
   };
 
   interface ITasksState {
@@ -125,8 +54,8 @@ const App = () => {
   useEffect(() => {
     axios
       .get("http://localhost:3000/tasksById")
-      .then(result => setTasks(result.data.tasks));
-  });
+      .then(result => setTasks(result.data));
+  }, [data]);
 
   return (
     <Table table="large" columns="13" celled structured selectable>
