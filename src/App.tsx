@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-// import { normalize, schema } from "normalizr"
+import { normalize, schema } from "normalizr"
 import axios from "axios";
 import { Table } from "semantic-ui-react";
 import "./App.css";
@@ -8,14 +8,14 @@ import { Task } from "./components/Task";
 
 const App = () => {
   //Data
-  const data: ITasksState = {
+  const initialState: ITasksState = {
     ids: [],
     tasksById: {}
   };
 
   interface ITasksState {
-    ids: TaskId[];
-    tasksById: { [id: number]: IOneTask };
+    readonly ids: TaskId[];
+    readonly tasksById: { [id: number]: IOneTask };
   }
 
   interface IOneTask {
@@ -28,27 +28,27 @@ const App = () => {
 
   type TaskId = number;
 
-  // interface INormalizedData<T> {
-  //   [uuid: string]: T
-  // }
-  //
-  // interface INormalizedTasksResponse {
-  //   result: number[],
-  //   entities: INormalizedData<IOneTask>
-  // }
+  interface INormalizedData<T> {
+    [uuid: string]: T
+  }
+
+  interface INormalizedTasksResponse {
+    result: number[],
+    entities: INormalizedData<IOneTask>
+  }
 
   // Setting state
 
   // define task schema
-  // const task = new schema.Entity("tasks");
-  // const mySchema = { tasks: [task] };
-  //
-  // // Normalized array
-  // const normTasks: INormalizedTasksResponse = normalize(data, mySchema);
-  //
-  // console.log(normTasks);
+  const task = new schema.Entity("tasks");
+  const mySchema = { tasks: [task] };
 
-  const [tasks, setTasks] = useState(data);
+  // Normalized array
+  const normalized: INormalizedTasksResponse = normalize(initialState, mySchema);
+
+  console.log(normalized);
+
+  const [tasks, setTasks] = useState(initialState);
 
   const postData = (data: ITasksState) => {
     return axios.post(`http://localhost:3000/tasksById`, data)
