@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react"
-import { normalize, schema } from "normalizr"
+import React, { useEffect, useState } from "react";
+import { normalize, schema } from "normalizr";
 import axios from "axios";
 import { Table } from "semantic-ui-react";
 import "./App.css";
@@ -29,13 +29,89 @@ const App = () => {
   type TaskId = number;
 
   interface INormalizedData<T> {
-    [uuid: string]: T
+    [uuid: string]: T;
   }
 
   interface INormalizedTasksResponse {
-    result: number[],
-    entities: INormalizedData<IOneTask>
+    result: number[];
+    entities: INormalizedData<IOneTask>;
   }
+
+  const UnNormalizedData = {
+    tasks: [
+      {
+        id: 1,
+        taskName: "Task 1",
+        taskStart: 3,
+        taskDuration: 3,
+        cellColor: "red"
+      },
+      {
+        id: 2,
+        taskName: "Task 2",
+        taskStart: 1,
+        taskDuration: 3,
+        cellColor: "blue"
+      },
+      {
+        id: 3,
+        taskName: "Task 3",
+        taskStart: 4,
+        taskDuration: 4,
+        cellColor: "green"
+      },
+      {
+        id: 4,
+        taskName: "Task 4",
+        taskStart: 3,
+        taskDuration: 8,
+        cellColor: "yellow"
+      },
+      {
+        id: 5,
+        taskName: "Task 5",
+        taskStart: 1,
+        taskDuration: 6,
+        cellColor: "purple"
+      },
+      {
+        id: 6,
+        taskName: "Task 6",
+        taskStart: 2,
+        taskDuration: 9,
+        cellColor: "orange"
+      },
+      {
+        id: 7,
+        taskName: "Task 7",
+        taskStart: 4,
+        taskDuration: 5,
+        cellColor: "grey"
+      },
+      {
+        id: 8,
+        taskName: "Task 8",
+        taskStart: 3,
+        taskDuration: 5,
+        cellColor: "blue"
+      },
+      {
+        id: 9,
+        taskName: "Task 9",
+        taskStart: 5,
+        taskDuration: 1,
+        cellColor: "cyan"
+      },
+      {
+        id: 10,
+        taskName: "Task 10",
+        taskStart: 4,
+        taskDuration: 3,
+        cellColor: "red"
+      }
+    ]
+  };
+
 
   // Setting state
 
@@ -44,22 +120,23 @@ const App = () => {
   const mySchema = { tasks: [task] };
 
   // Normalized array
-  const normalized: INormalizedTasksResponse = normalize(initialState, mySchema);
+  const normTasks = normalize(UnNormalizedData, mySchema);
 
-  console.log(normalized);
+  console.log(normTasks);
 
   const [tasks, setTasks] = useState(initialState);
 
   const postData = (data: ITasksState) => {
-    return axios.post(`http://localhost:3000/tasksById`, data)
-      .then((response) => console.log(response))
+    return axios
+      .post(`http://localhost:3000/tasksById`, data)
+      // .then(response => console.log(response));
   };
 
   const changeTaskDuration = (
     taskID: number,
     taskStart: number,
     taskDuration: number
-  ) : void  => {
+  ): void => {
     const task = tasks.tasksById[taskID];
     const newTasks = { ...tasks };
     newTasks.tasksById[taskID] = {
@@ -68,7 +145,7 @@ const App = () => {
     };
     setTasks(newTasks);
 
-    postData(tasks)
+    postData(tasks);
   };
 
   useEffect(() => {
