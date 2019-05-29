@@ -40,23 +40,13 @@ const App = () => {
   type TaskId = number;
 
 
-  const unNormalizedData = axios.get("http://localhost:3000/tasks")
-
-  // define task schema
-  const task = new schema.Entity("tasks");
-  const mySchema = { tasks: [task] };
-
-  // // Normalized array
-  const normTasks = normalize(unNormalizedData, mySchema);
-
-  console.log(normTasks);
 
   // Setting state
-  const [tasks, setTasks] = useState(normTasks);
+  const [tasks, setTasks] = useState(data);
 
   const postData = (data: ITasksState) => {
     return axios.post(`http://localhost:3000/tasksById`, data)
-      .then((response) => console.log(response))
+      // .then((response) => console.log(response))
   };
 
   const changeTaskDuration = (
@@ -78,7 +68,22 @@ const App = () => {
   useEffect(() => {
     axios
       .get<ITasksState>("http://localhost:3000/tasks")
-      .then(result => setTasks(result.data));
+      .then(response => {
+
+        // define task schema
+        const task = new schema.Entity("tasks");
+
+        const mySchema = {
+          ids: [task],
+          taskById: task
+        };
+
+        // // Normalized array
+        const normTasks = normalize(response.data, mySchema);
+
+        console.log(normTasks);
+      })
+      .then(response => setTasks(response.data));
   }, []);
 
   return (
