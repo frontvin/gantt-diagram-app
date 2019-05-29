@@ -33,13 +33,11 @@ const App = () => {
   interface INormalizedTasksResponse {
     result: number[];
     entities: {
-      tasks: INormalizedData<IOneTask>;
+      tasksById: INormalizedData<IOneTask>;
     };
   }
 
   type TaskId = number;
-
-
 
   // Setting state
   const [tasks, setTasks] = useState(data);
@@ -67,23 +65,26 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get<ITasksState>("http://localhost:3000/tasks")
+      .get<INormalizedTasksResponse>("http://localhost:3000/tasksById")
       .then(response => {
+        console.log(response.data);
 
         // define task schema
-        const task = new schema.Entity("tasks");
-
-        const mySchema = {
-          ids: [task],
-          taskById: task
-        };
+        const task = new schema.Entity("tasksById");
+        const mySchema = [task];
 
         // // Normalized array
-        const normTasks = normalize(response.data, mySchema);
-
+        const normTasks : INormalizedTasksResponse = normalize(response.data, mySchema);
         console.log(normTasks);
+
+        const tasksById = normTasks.entities.tasksById;
+        const ids = normTasks.result;
+        console.log(tasksById);
+        console.log(ids);
+
+        setTasks({ids, tasksById})
+
       })
-      .then(response => setTasks(response.data));
   }, []);
 
   return (
