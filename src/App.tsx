@@ -44,21 +44,19 @@ const App = () => {
 
   const postData = (data: ITasksState) => {
 
+    console.log(data)
+
     // denormalize data
     const task = new schema.Entity("tasksById");
     const myDenormSchema = { tasksById : [task] };
-    const entities = {
-        ids: data.ids,
-        tasksById: data.tasksById
-    };
+    const entities = data;
 
     console.log(`entities ${entities}`);
 
-    const denormalizedData = denormalize( { tasksById: [entities.ids] }, myDenormSchema, entities );
-    console.log("denore " + Object.keys(denormalizedData));
+    const denormalizedData = denormalize( { tasksById: [1,2,3,4,5,6,7,8,9,10] }, myDenormSchema, entities );
+    console.log("denore " + denormalizedData);
 
-
-    return axios.put(`http://localhost:3000/tasksById`, denormalizedData)
+    return axios.put(`http://localhost:3000/tasksById/`, {denormalizedData})
   };
 
   const changeTaskDuration = (
@@ -79,7 +77,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get<INormalizedTasksResponse>("http://localhost:3000/tasksById/")
+      .get<INormalizedTasksResponse>("http://localhost:3000/tasksById")
       .then(response => {
 
         // define task schema
