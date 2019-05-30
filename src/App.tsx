@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { normalize, schema } from "normalizr";
+import { normalize, denormalize, schema } from "normalizr";
 import { Table } from "semantic-ui-react";
 import "./App.css";
 import { TableHeaderRow } from "./components/TableHeaderRow";
@@ -43,8 +43,22 @@ const App = () => {
   const [tasks, setTasks] = useState(data);
 
   const postData = (data: ITasksState) => {
-    return axios.post(`http://localhost:3000/tasksById`, data)
-      // .then((response) => console.log(response))
+
+    // denormalize data
+    const task = new schema.Entity("tasksById");
+    const myDenormSchema = { tasksById : [task] };
+    const entities = {
+        ids: data.ids,
+        tasksById: data.tasksById
+    };
+
+    console.log(`entities ${entities}`);
+
+    const denormalizedData = denormalize( { tasksById: [entities.ids] }, myDenormSchema, entities );
+    console.log("denore " + Object.keys(denormalizedData));
+
+
+    return axios.put(`http://localhost:3000/tasksById`, denormalizedData)
   };
 
   const changeTaskDuration = (
@@ -65,22 +79,17 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get<INormalizedTasksResponse>("http://localhost:3000/tasksById")
+      .get<INormalizedTasksResponse>("http://localhost:3000/tasksById/")
       .then(response => {
-        console.log(response.data);
 
         // define task schema
         const task = new schema.Entity("tasksById");
         const mySchema = [task];
 
-        // // Normalized array
+        // Normalized array
         const normTasks : INormalizedTasksResponse = normalize(response.data, mySchema);
-        console.log(normTasks);
-
         const tasksById = normTasks.entities.tasksById;
         const ids = normTasks.result;
-        console.log(tasksById);
-        console.log(ids);
 
         setTasks({ids, tasksById})
 
