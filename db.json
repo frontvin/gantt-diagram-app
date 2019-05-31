@@ -4,14 +4,14 @@
       "id": 1,
       "taskName": "Task 1",
       "taskStart": 3,
-      "taskDuration": 7,
+      "taskDuration": 8,
       "cellColor": "red"
     },
     {
       "id": 2,
       "taskName": "Task 2",
       "taskStart": 1,
-      "taskDuration": 9,
+      "taskDuration": 5,
       "cellColor": "blue"
     },
     {
@@ -25,7 +25,7 @@
       "id": 4,
       "taskName": "Task 4",
       "taskStart": 3,
-      "taskDuration": 7,
+      "taskDuration": 5,
       "cellColor": "yellow"
     },
     {
@@ -39,7 +39,7 @@
       "id": 6,
       "taskName": "Task 6",
       "taskStart": 2,
-      "taskDuration": 9,
+      "taskDuration": 5,
       "cellColor": "orange"
     },
     {
@@ -67,7 +67,7 @@
       "id": 10,
       "taskName": "Task 10",
       "taskStart": 2,
-      "taskDuration": 8,
+      "taskDuration": 5,
       "cellColor": "red"
     }
   ]

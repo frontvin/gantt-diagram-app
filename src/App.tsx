@@ -42,21 +42,25 @@ const App = () => {
   // Setting state
   const [tasks, setTasks] = useState(data);
 
-  const postData = (data: ITasksState) => {
-
-    console.log(data)
+  const postData = (data: ITasksState, taskID: number) => {
+    console.log(data.ids);
 
     // denormalize data
     const task = new schema.Entity("tasksById");
     const myDenormSchema = { tasksById : [task] };
-    const entities = data;
+    const entities = {
+      id: data.ids[taskID-1],
+      tasksById: data.tasksById[taskID]
+    };
 
-    console.log(`entities ${entities}`);
+    console.log(entities.id)
 
-    const denormalizedData = denormalize( { tasksById: [1,2,3,4,5,6,7,8,9,10] }, myDenormSchema, entities );
-    console.log("denore " + denormalizedData);
+    // console.log(`entities ${entities}`);
 
-    return axios.put(`http://localhost:3000/tasksById/`, {denormalizedData})
+    const denormalizedData = denormalize( entities.tasksById, myDenormSchema, entities );
+    // console.log("denore " + denormalizedData);
+
+    return axios.put(`http://localhost:3000/tasksById/${entities.id}`, denormalizedData)
   };
 
   const changeTaskDuration = (
@@ -72,7 +76,7 @@ const App = () => {
     };
     setTasks(newTasks);
 
-    postData(tasks)
+    postData(tasks, taskID)
   };
 
   useEffect(() => {
@@ -88,6 +92,7 @@ const App = () => {
         const normTasks : INormalizedTasksResponse = normalize(response.data, mySchema);
         const tasksById = normTasks.entities.tasksById;
         const ids = normTasks.result;
+        console.log(`ids: ${ids}`)
 
         setTasks({ids, tasksById})
 
