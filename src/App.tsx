@@ -13,10 +13,9 @@ export const getTasksById = async () => {
   return axios.get<INormalizedTasksResponse>(`${BASE_URL}/tasksById`);
 };
 
-export const putTasksByid = async () => {
-  return
-}
-
+export const putTask = async (task: IOneTask) => {
+  return axios.put(`${BASE_URL}/tasksById/${task.id}`, task);
+};
 
 const App = () => {
   //Data
@@ -28,23 +27,6 @@ const App = () => {
   // Setting state
   const [tasks, setTasks] = useState<ITasksState>(data);
 
-  export const updateTask = async (task: IOneTask) => {
-    const task = new schema.Entity("tasksById");
-    const myDenormSchema = { tasksById: [task] };
-    const entities = {
-      id: taskID,
-      tasksById: data.tasksById[taskID]
-    };
-
-    const denormalizedData : IOneTask = denormalize(
-      entities.tasksById,
-      myDenormSchema,
-      entities
-    );
-
-
-    return axios.put(`${BASE_URL}/tasksById/${task.id}`, task);
-  }
 
   const updateTask = (data: ITasksState, taskID: number) => {
     // denormalize data
@@ -61,10 +43,7 @@ const App = () => {
       entities
     );
 
-    return axios.put<IOneTask>(
-      `http://localhost:3000/tasksById/${entities.id}`,
-      denormalizedData
-    );
+    putTask(denormalizedData);
   };
 
   const changeTaskDuration = (
