@@ -1,10 +1,22 @@
 import React, { useEffect, useState } from "react";
+
 import axios from "axios";
 import { normalize, denormalize, schema } from "normalizr";
 import { Table } from "semantic-ui-react";
 import "./App.css";
 import { TableHeaderRow } from "./components/TableHeaderRow";
 import { Task } from "./components/Task";
+import { INormalizedTasksResponse, IOneTask, ITasksState } from "./interfaces";
+import { BASE_URL } from './constants';
+
+export const getTasksById = async () => {
+  return axios.get<INormalizedTasksResponse>(`${BASE_URL}/tasksById`);
+};
+
+export const putTasksByid = async () => {
+  return
+}
+
 
 const App = () => {
   //Data
@@ -13,61 +25,53 @@ const App = () => {
     tasksById: {}
   };
 
-  interface INormalizedData<T> {
-    [ids: string]: T;
-  }
-
-  interface ITasksState {
-    ids: TaskId[];
-    tasksById: { [id: number]: IOneTask };
-  }
-
-  interface IOneTask {
-    id: TaskId;
-    taskName: string;
-    taskStart: number;
-    taskDuration: number;
-    cellColor: string;
-  }
-
-  interface INormalizedTasksResponse {
-    result: number[];
-    entities: {
-      tasksById: INormalizedData<IOneTask>;
-    };
-  }
-
-  type TaskId = number;
-
   // Setting state
-  const [tasks, setTasks] = useState(data);
+  const [tasks, setTasks] = useState<ITasksState>(data);
 
-  const postData = (data: ITasksState, taskID: number) => {
-    console.log(data.ids);
-
-    // denormalize data
+  export const updateTask = async (task: IOneTask) => {
     const task = new schema.Entity("tasksById");
-    const myDenormSchema = { tasksById : [task] };
+    const myDenormSchema = { tasksById: [task] };
     const entities = {
-      id: data.ids[taskID-1],
+      id: taskID,
       tasksById: data.tasksById[taskID]
     };
 
-    console.log(entities.id)
+    const denormalizedData : IOneTask = denormalize(
+      entities.tasksById,
+      myDenormSchema,
+      entities
+    );
 
-    // console.log(`entities ${entities}`);
 
-    const denormalizedData = denormalize( entities.tasksById, myDenormSchema, entities );
-    // console.log("denore " + denormalizedData);
+    return axios.put(`${BASE_URL}/tasksById/${task.id}`, task);
+  }
 
-    return axios.put(`http://localhost:3000/tasksById/${entities.id}`, denormalizedData)
+  const updateTask = (data: ITasksState, taskID: number) => {
+    // denormalize data
+    const task = new schema.Entity("tasksById");
+    const myDenormSchema = { tasksById: [task] };
+    const entities = {
+      id: taskID,
+      tasksById: data.tasksById[taskID]
+    };
+
+    const denormalizedData : IOneTask = denormalize(
+      entities.tasksById,
+      myDenormSchema,
+      entities
+    );
+
+    return axios.put<IOneTask>(
+      `http://localhost:3000/tasksById/${entities.id}`,
+      denormalizedData
+    );
   };
 
   const changeTaskDuration = (
     taskID: number,
     taskStart: number,
     taskDuration: number
-  ) : void  => {
+  ): void => {
     const task = tasks.tasksById[taskID];
     const newTasks = { ...tasks };
     newTasks.tasksById[taskID] = {
@@ -76,35 +80,34 @@ const App = () => {
     };
     setTasks(newTasks);
 
-    postData(tasks, taskID)
+    updateTask(tasks, taskID);
   };
 
   useEffect(() => {
-    axios
-      .get<INormalizedTasksResponse>("http://localhost:3000/tasksById")
-      .then(response => {
+    getTasksById().then(response => {
+      // define task schema
+      const task = new schema.Entity("tasksById");
+      const mySchema = [task];
 
-        // define task schema
-        const task = new schema.Entity("tasksById");
-        const mySchema = [task];
+      // Normalized array
+      const normTasks: INormalizedTasksResponse = normalize(
+        response.data,
+        mySchema
+      );
+      const tasksById = normTasks.entities.tasksById;
+      const ids = normTasks.result;
+      console.log(`ids: ${ids}`);
 
-        // Normalized array
-        const normTasks : INormalizedTasksResponse = normalize(response.data, mySchema);
-        const tasksById = normTasks.entities.tasksById;
-        const ids = normTasks.result;
-        console.log(`ids: ${ids}`)
-
-        setTasks({ids, tasksById})
-
-      })
+      setTasks({ ids, tasksById });
+    });
   }, []);
 
   return (
     <Table table="large" columns="13" celled structured selectable>
       <Table.Header>
         <Table.Row textAlign="center">
-          <Table.HeaderCell rowSpan="2">Header</Table.HeaderCell>
-          <Table.HeaderCell colSpan="12">Tasks</Table.HeaderCell>
+          <Table.HeaderCell rowSpan="2">Tasks</Table.HeaderCell>
+          <Table.HeaderCell colSpan="12">Duration</Table.HeaderCell>
         </Table.Row>
         <Table.Row textAlign="center">
           <TableHeaderRow />

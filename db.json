@@ -4,7 +4,7 @@
       "id": 1,
       "taskName": "Task 1",
       "taskStart": 3,
-      "taskDuration": 8,
+      "taskDuration": 5,
       "cellColor": "red"
     },
     {
@@ -18,21 +18,21 @@
       "id": 3,
       "taskName": "Task 3",
       "taskStart": 4,
-      "taskDuration": 4,
+      "taskDuration": 3,
       "cellColor": "green"
     },
     {
       "id": 4,
       "taskName": "Task 4",
       "taskStart": 3,
-      "taskDuration": 5,
+      "taskDuration": 4,
       "cellColor": "yellow"
     },
     {
       "id": 5,
       "taskName": "Task 5",
       "taskStart": 1,
-      "taskDuration": 5,
+      "taskDuration": 7,
       "cellColor": "purple"
     },
     {
@@ -67,7 +67,7 @@
       "id": 10,
       "taskName": "Task 10",
       "taskStart": 2,
-      "taskDuration": 5,
+      "taskDuration": 8,
       "cellColor": "red"
     }
   ]
