@@ -72,3 +72,19 @@
     }
   ]
 }
+
+
+
+const isStatusOk = status => status >= 200 && status <= 299;
+
+const updateTaskDuration = async (taskId: number, taskStart: number, taskEnd: number) => {
+const task = { ...tasks.tasksById[taskId], taskStart, taskEnd };
+const { status, data } = await updateTask(task);
+
+if (!isStatusOk(status)) {
+return setError(data);
+}
+
+// update state here
+
+}

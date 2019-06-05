@@ -11,21 +11,21 @@
       "id": 2,
       "taskName": "Task 2",
       "taskStart": 1,
-      "taskDuration": 5,
+      "taskDuration": 6,
       "cellColor": "blue"
     },
     {
       "id": 3,
       "taskName": "Task 3",
       "taskStart": 4,
-      "taskDuration": 3,
+      "taskDuration": 6,
       "cellColor": "green"
     },
     {
       "id": 4,
       "taskName": "Task 4",
       "taskStart": 3,
-      "taskDuration": 4,
+      "taskDuration": 7,
       "cellColor": "yellow"
     },
     {
