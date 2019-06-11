@@ -53,6 +53,7 @@ const changeTaskDuration = (
 };
 
 
+
 const App = () => {
   //Data
   const data: ITasksState = {
@@ -66,6 +67,7 @@ const App = () => {
   setTasks(newTasks);
 
   updateTask(tasks, taskID);
+
 
   useEffect(() => {
     getTasksById().then(response => {
