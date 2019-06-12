@@ -18,7 +18,7 @@ export const putTask = async (task: IOneTask) => {
   return axios.put(`${BASE_URL}/tasksById/${task.id}`, task);
 };
 
-export const updateTask = (data: ITasksState, taskID: number) => {
+export const denormalizeData = (data: ITasksState, taskID: number) => {
   // denormalize data
   const task = new schema.Entity("tasksById");
   const myDenormSchema = { tasksById: [task] };
@@ -64,7 +64,14 @@ const App = () => {
   // Setting state
   const [tasks, setTasks] = useState<ITasksState>(data);
 
+  // setTasks(newTasks);
+
+  // denormalizeData(newTasks, 5)
+
+  // updateTask(tasks, taskID);
+
   // getting data from API
+
   useEffect(() => {
     getTasksById().then(response => {
       // define task schema
@@ -83,16 +90,6 @@ const App = () => {
       setTasks({ ids, tasksById });
     });
   }, []);
-
-
-  updateTask(tasks, 5)
-
-  //
-  // setTasks(newTasks);
-  //
-  // updateTask(tasks, taskID);
-
-
 
 
   return (

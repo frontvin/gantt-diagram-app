@@ -5,5 +5,5 @@ import changeTaskDuration from './App'
 
 //
 // test("Result of changeTaskDuration will be", () => {
-//   expect(changeTaskDuration(1,2,4,5)).toBe(5)
+//   expect(changeTaskDuration).toBe(5)
 // });
