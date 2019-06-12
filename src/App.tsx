@@ -33,7 +33,9 @@ export const updateTask = (data: ITasksState, taskID: number) => {
     entities
   );
 
-  putTask(denormalizedData);
+  return denormalizedData;
+
+  // putTask(denormalizedData);
 };
 
 const changeTaskDuration = (
@@ -52,8 +54,6 @@ const changeTaskDuration = (
   return newTasks;
 };
 
-
-
 const App = () => {
   //Data
   const data: ITasksState = {
@@ -64,11 +64,7 @@ const App = () => {
   // Setting state
   const [tasks, setTasks] = useState<ITasksState>(data);
 
-  setTasks(newTasks);
-
-  updateTask(tasks, taskID);
-
-
+  // getting data from API
   useEffect(() => {
     getTasksById().then(response => {
       // define task schema
@@ -87,6 +83,17 @@ const App = () => {
       setTasks({ ids, tasksById });
     });
   }, []);
+
+
+  updateTask(tasks, 5)
+
+  //
+  // setTasks(newTasks);
+  //
+  // updateTask(tasks, taskID);
+
+
+
 
   return (
     <Table table="large" columns="13" celled structured selectable>
