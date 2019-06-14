@@ -101,7 +101,6 @@ const App = () => {
       );
       const tasksById = normTasks.entities.tasksById;
       const ids = normTasks.result;
-      console.log(`ids: ${ids}`);
 
       setTasks({ ids, tasksById });
     });
