@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import { Table } from 'semantic-ui-react'
 
 // ****************************************************************
 // cell styled component
@@ -7,8 +8,8 @@ export const ColoredCell: React.FC<{
   onClick: () => void;
 }> = ({ children, backgroundColor, onClick }) => {
   return (
-    <td style={{ backgroundColor }} onClick={onClick}>
+    <Table.Cell style={{ backgroundColor }} onClick={onClick}>
       {children}
-    </td>
+    </Table.Cell>
   );
 };

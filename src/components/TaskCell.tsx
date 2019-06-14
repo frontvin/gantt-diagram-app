@@ -7,7 +7,6 @@ import { ColoredCell } from "./ColoredCell";
 // cell interface
 interface ITaskCell {
   taskID: number;
-  taskName: string;
   monthNumber: number;
   taskStart: number;
   active: boolean;

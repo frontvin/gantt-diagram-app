@@ -3,7 +3,7 @@ import { Table } from "semantic-ui-react";
 import { TableHeaderRow } from "./components/TableHeaderRow";
 import { Task } from "./components/Task";
 import { INormalizedTasksResponse, IOneTask, ITasksState } from "./interfaces";
-import { BASE_URL } from './constants';
+import { BASE_URL } from "./constants";
 
 import axios from "axios";
 import { normalize, denormalize, schema } from "normalizr";
@@ -15,7 +15,7 @@ export const getTasksById = async () => {
 };
 
 export const putTask = async (task: IOneTask) => {
-  return axios.put(`${BASE_URL}/tasksById/${task.id}`, task);
+  return axios.put<IOneTask>(`${BASE_URL}/tasksById/${task.id}`, task);
 };
 
 export const denormalizeData = (data: ITasksState, taskID: number) => {
@@ -27,7 +27,7 @@ export const denormalizeData = (data: ITasksState, taskID: number) => {
     tasksById: data.tasksById[taskID]
   };
 
-  const denormalizedData : IOneTask = denormalize(
+  const denormalizedData: IOneTask = denormalize(
     entities.tasksById,
     myDenormSchema,
     entities
@@ -35,23 +35,25 @@ export const denormalizeData = (data: ITasksState, taskID: number) => {
 
   return denormalizedData;
 
-  // putTask(denormalizedData);
 };
 
 const changeTaskDuration = (
+  tasks: ITasksState,
   taskID: number,
   taskStart: number,
-  taskDuration: number,
-  tasks: ITasksState
+  taskDuration: number
 ): ITasksState => {
-  const task = tasks.tasksById[taskID];
-  const newTasks = { ...tasks };
-  newTasks.tasksById[taskID] = {
-    ...task,
-    ...{ taskStart: taskStart, taskDuration: taskDuration }
+  return {
+    ...tasks,
+    tasksById: {
+      ...tasks.tasksById,
+      [taskID]: {
+        ...tasks.tasksById[taskID],
+        taskStart,
+        taskDuration
+      }
+    }
   };
-
-  return newTasks;
 };
 
 const App = () => {
@@ -64,14 +66,28 @@ const App = () => {
   // Setting state
   const [tasks, setTasks] = useState<ITasksState>(data);
 
-  // setTasks(newTasks);
+  // updateTasks handler
+  const handleUpdateTask = (
+    taskID: number,
+    taskStart: number,
+    taskDuration: number
+  ) : void => {
+    setTasks(tasks =>
+      changeTaskDuration(tasks, taskID, taskStart, taskDuration)
+    );
+  };
 
-  // denormalizeData(newTasks, 5)
+  const idCallback = (taskIdFomChild : number) : void => {
 
-  // updateTask(tasks, taskID);
+    const denData = denormalizeData(tasks, taskIdFomChild);
+
+    console.log(denData);
+    console.log(taskIdFomChild);
+
+    putTask(denData);
+  };
 
   // getting data from API
-
   useEffect(() => {
     getTasksById().then(response => {
       // define task schema
@@ -90,7 +106,6 @@ const App = () => {
       setTasks({ ids, tasksById });
     });
   }, []);
-
 
   return (
     <Table table="large" columns="13" celled structured selectable>
@@ -115,7 +130,8 @@ const App = () => {
               taskStart={task.taskStart}
               taskDuration={task.taskDuration}
               cellColor={task.cellColor}
-              changeTaskDuration={() => changeTaskDuration}
+              changeTaskDuration={handleUpdateTask}
+              callbackFromParent={idCallback}
             />
           );
         })}
@@ -124,4 +140,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default App

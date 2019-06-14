@@ -88,3 +88,34 @@ return setError(data);
 // update state here
 
 }
+
+
+
+const handleUpdateTask = (
+taskID: number,
+taskStart: number,
+taskDuration: number
+) => {
+setTasks(tasks => changeTaskDuration(tasks, taskID, taskStart, taskDuration));
+};
+
+
+
+const changeTaskDuration = (
+tasks: ITasksState,
+taskID: number,
+taskStart: number,
+taskDuration: number
+): ITasksState => {
+return {
+...tasks,
+tasksById: {
+...tasks.tasksById,
+[taskID]: {
+...tasks.tasksById[taskID],
+taskStart,
+taskDuration
+}
+}
+};
+};

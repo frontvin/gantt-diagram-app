@@ -11,14 +11,14 @@
       "id": 2,
       "taskName": "Task 2",
       "taskStart": 1,
-      "taskDuration": 6,
+      "taskDuration": 8,
       "cellColor": "blue"
     },
     {
       "id": 3,
       "taskName": "Task 3",
       "taskStart": 4,
-      "taskDuration": 6,
+      "taskDuration": 7,
       "cellColor": "green"
     },
     {

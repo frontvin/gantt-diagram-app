@@ -1,18 +1,24 @@
-import React from 'react';
+import React from "react";
 import { Table } from "semantic-ui-react";
-import { TaskCell } from './TaskCell'
+import { TaskCell } from "./TaskCell";
 
 // *******************************************************
 // Task component
 // task interface
 interface ITask {
-  taskID: number
+  taskID: number;
   taskName: string;
   taskStart: number;
   taskDuration: number;
   cellColor: string;
-  changeTaskDuration: (taskID: number, taskStart: number, monthNumber: number) => void
+  changeTaskDuration: (
+    taskID: number,
+    taskStart: number,
+    monthNumber: number
+  ) => void;
+  callbackFromParent: (taskIdFomChild: number) => void
 }
+
 
 const monthNumbers = Array.from({ length: 12 }, (j, i) => i + 1);
 
@@ -24,28 +30,28 @@ const taskActiveInMonth = (
   return taskStart <= monthNumber && monthNumber < taskStart + taskDuration;
 };
 
-export const Task: React.FC<ITask> = (props) => {
 
-  const getCurrentCell = (
-    taskID: number,
-    monthNumber: number,
-  ): void => {
+export const Task: React.FC<ITask> = props => {
 
+  const getCurrentCell = (taskID: number, monthNumber: number): void => {
     let initialTaskStart = props.taskStart;
 
     if (monthNumber > initialTaskStart) {
       let newDuration = monthNumber - props.taskStart + 1;
       props.changeTaskDuration(taskID, props.taskStart, newDuration);
-    }
-    else if (monthNumber < initialTaskStart) {
-      props.changeTaskDuration(taskID, monthNumber, props.taskDuration + props.taskStart - monthNumber);
-    }
-    else {
+    } else if (monthNumber < initialTaskStart) {
+      props.changeTaskDuration(
+        taskID,
+        monthNumber,
+        props.taskDuration + props.taskStart - monthNumber
+      );
+    } else {
       props.changeTaskDuration(taskID, monthNumber + 1, props.taskDuration - 1);
     }
 
     console.log(`monthNumber ${monthNumber}, taskID ${taskID}`);
 
+    props.callbackFromParent(taskID);
   };
 
   return (
@@ -56,7 +62,6 @@ export const Task: React.FC<ITask> = (props) => {
           key={`${monthNumber}-${props.taskName}`}
           taskID={props.taskID}
           monthNumber={monthNumber}
-          taskName={props.taskName}
           taskStart={props.taskStart}
           cellColor={props.cellColor}
           active={taskActiveInMonth(
@@ -68,5 +73,5 @@ export const Task: React.FC<ITask> = (props) => {
         />
       ))}
     </Table.Row>
-  )
+  );
 };
