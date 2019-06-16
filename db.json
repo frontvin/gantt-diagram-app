@@ -18,14 +18,14 @@
       "id": 3,
       "taskName": "Task 3",
       "taskStart": 4,
-      "taskDuration": 4,
+      "taskDuration": 7,
       "cellColor": "green"
     },
     {
       "id": 4,
       "taskName": "Task 4",
       "taskStart": 3,
-      "taskDuration": 7,
+      "taskDuration": 9,
       "cellColor": "yellow"
     },
     {

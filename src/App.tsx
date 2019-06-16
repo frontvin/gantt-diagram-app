@@ -37,7 +37,7 @@ export const denormalizeData = (data: ITasksState, taskID: number) => {
 
 };
 
-const changeTaskDuration = (
+export const changeTaskDuration = (
   tasks: ITasksState,
   taskID: number,
   taskStart: number,
@@ -66,6 +66,7 @@ const App = () => {
   // Setting state
   const [tasks, setTasks] = useState<ITasksState>(data);
 
+  console.log(tasks)
   // updateTasks handler
   const handleUpdateTask = (
     taskID: number,
@@ -74,6 +75,7 @@ const App = () => {
   ) : void => {
 
     const newTasks = changeTaskDuration(tasks, taskID, taskStart, taskDuration);
+    console.log(newTasks);
     setTasks(newTasks);
 
     const denData = denormalizeData(newTasks, taskID);
