@@ -1,9 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App'
 import changeTaskDuration from './App'
-
-
 
 test("Result of changeTaskDuration will be", () => {
 
@@ -13,8 +8,8 @@ test("Result of changeTaskDuration will be", () => {
       {
         id: 1,
         taskName: "Task1",
-        tasksStart: 5,
-        taskDuration: 3,    // initial taskDuration
+        tasksStart: 3,
+        taskDuration: 5,    // initial taskDuration
         cellColor: "red"
       }
     ]
@@ -26,12 +21,12 @@ test("Result of changeTaskDuration will be", () => {
       {
         id: 1,
         taskName: "Task1",
-        tasksStart: 5,
+        tasksStart: 3,
         taskDuration: 7,    // taskDuration must be changed
         cellColor: "red"
       }
     ]
-  }
+  };
 
-  expect(changeTaskDuration).toBe(5)
+  expect(iniData).toBe(expectedResult)
 });

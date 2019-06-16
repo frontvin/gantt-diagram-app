@@ -32,14 +32,14 @@
       "id": 5,
       "taskName": "Task 5",
       "taskStart": 1,
-      "taskDuration": 7,
+      "taskDuration": 9,
       "cellColor": "purple"
     },
     {
       "id": 6,
       "taskName": "Task 6",
       "taskStart": 2,
-      "taskDuration": 5,
+      "taskDuration": 9,
       "cellColor": "orange"
     },
     {
