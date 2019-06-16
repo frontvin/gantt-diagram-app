@@ -4,14 +4,14 @@
       "id": 1,
       "taskName": "Task 1",
       "taskStart": 3,
-      "taskDuration": 9,
+      "taskDuration": 5,
       "cellColor": "red"
     },
     {
       "id": 2,
       "taskName": "Task 2",
       "taskStart": 1,
-      "taskDuration": 6,
+      "taskDuration": 9,
       "cellColor": "blue"
     },
     {

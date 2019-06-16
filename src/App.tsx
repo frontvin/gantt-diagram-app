@@ -72,18 +72,11 @@ const App = () => {
     taskStart: number,
     taskDuration: number
   ) : void => {
-    setTasks(tasks =>
-      changeTaskDuration(tasks, taskID, taskStart, taskDuration)
-    );
-  };
 
-  const idCallback = (taskIdFomChild : number) : void => {
+    const newTasks = changeTaskDuration(tasks, taskID, taskStart, taskDuration);
+    setTasks(newTasks);
 
-    const denData = denormalizeData(tasks, taskIdFomChild);
-
-    console.log(denData);
-    console.log(taskIdFomChild);
-
+    const denData = denormalizeData(newTasks, taskID);
     putTask(denData);
   };
 
@@ -130,7 +123,6 @@ const App = () => {
               taskDuration={task.taskDuration}
               cellColor={task.cellColor}
               changeTaskDuration={handleUpdateTask}
-              callbackFromParent={idCallback}
             />
           );
         })}

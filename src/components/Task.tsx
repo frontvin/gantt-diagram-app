@@ -16,7 +16,6 @@ interface ITask {
     taskStart: number,
     monthNumber: number
   ) => void;
-  callbackFromParent: (taskIdFomChild: number) => void
 }
 
 
@@ -51,7 +50,6 @@ export const Task: React.FC<ITask> = props => {
 
     console.log(`monthNumber ${monthNumber}, taskID ${taskID}`);
 
-    props.callbackFromParent(taskID);
   };
 
   return (
