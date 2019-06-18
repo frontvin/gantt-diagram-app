@@ -4,7 +4,7 @@
       "id": 1,
       "taskName": "Task 1",
       "taskStart": 3,
-      "taskDuration": 5,
+      "taskDuration": 8,
       "cellColor": "red"
     },
     {
@@ -32,14 +32,14 @@
       "id": 5,
       "taskName": "Task 5",
       "taskStart": 1,
-      "taskDuration": 9,
+      "taskDuration": 7,
       "cellColor": "purple"
     },
     {
       "id": 6,
       "taskName": "Task 6",
       "taskStart": 2,
-      "taskDuration": 9,
+      "taskDuration": 5,
       "cellColor": "orange"
     },
     {

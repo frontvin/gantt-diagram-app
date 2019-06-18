@@ -1,6 +1,10 @@
 import React from "react";
 import { Table } from "semantic-ui-react";
 import { TaskCell } from "./TaskCell";
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+configure({ adapter: new Adapter() });
 
 // *******************************************************
 // Task component

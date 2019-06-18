@@ -2,6 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import { TaskCell } from "./components/TaskCell";
 
+
 it("renders correctly", () => {
   const CELL = renderer
     .create(
