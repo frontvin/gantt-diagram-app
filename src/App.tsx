@@ -66,7 +66,6 @@ const App = () => {
   // Setting state
   const [tasks, setTasks] = useState<ITasksState>(data);
 
-  console.log(tasks)
   // updateTasks handler
   const handleUpdateTask = (
     taskID: number,

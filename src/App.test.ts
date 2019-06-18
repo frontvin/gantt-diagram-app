@@ -22,7 +22,7 @@ test("Result of changeTaskDuration will be", () => {
         id: 1,
         taskName: "Task1",
         taskStart: 3,
-        taskDuration: 7,    // taskDuration must be changed
+        taskDuration: 7,    // changed taskDuration
         cellColor: "red"
       }
     }
